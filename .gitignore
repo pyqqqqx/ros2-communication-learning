@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# WorkBuddy 项目数据目录，不提交
+.workbuddy/
