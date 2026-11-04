@@ -128,3 +128,22 @@ ros2 topic echo /calc2_result
 2. **接口包 package.xml**：`<member_of_group>rosidl_interface_packages</member_of_group>` 必须在 `<package>` 直接子层级，不能放 `<export>` 里。
 3. **Float32 赋值**：`msg.data = float(结果)`，必须用原生 `float` 转换，不能用 numpy.float32。
 4. **setup.py 三件套**：`packages`（找包）+ `data_files`（装 launch/package.xml）+ `entry_points`（注册节点）。
+
+---
+
+## 五、修复记录（2026-11-04）
+
+本次对交付包做了代码修复与结构增强：
+
+1. **修复零宽字符 bug**：`calc1_node.py`、`calc2_node.py`、`final_node.py`、`my_pub.py` 末尾的
+   `if __name__ == '__&#8203;main__':` 中夹带了字面量 `&#8203;`，已统一修正为
+   `if __name__ == '__main__':`。
+   - 现象：直接 `python3 xxx.py` 运行不会进入 `main()`；
+   - 影响范围：仅影响「脚本直接运行」，`ros2 run` / `ros2 launch`（走 `entry_points`）不受影响；
+   - 现已修复并重新打包。
+2. **新增 `src/` 目录**：将 5 个包源码展开到仓库 `src/` 下，便于在 GitHub 上直接审阅，
+   内容与 `ros2_task_deliver.tar.gz` 保持一致；同时移除了误打包的
+   `my_interfaces/.package.xml.swp` 临时文件。
+
+> 已在 Ubuntu 22.04 + ROS2 Humble 上实测：`colcon build` 5 包成功，`/pub1~5` 5Hz，
+> `/calc1_result`、`/calc2_result` 与 `final_node` 打印均正常。
