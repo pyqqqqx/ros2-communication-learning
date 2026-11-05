@@ -147,3 +147,12 @@ ros2 topic echo /calc2_result
 
 > 已在 Ubuntu 22.04 + ROS2 Humble 上实测：`colcon build` 5 包成功，`/pub1~5` 5Hz，
 > `/calc1_result`、`/calc2_result` 与 `final_node` 打印均正常。
+
+---
+
+## 六、交付报告
+
+- [车队通讯任务_交付报告.md](docs/车队通讯任务_交付报告.md) —— 任务说明、链路、复现步骤与踩坑记录
+- [车队通讯任务_交付报告.pdf](docs/车队通讯任务_交付报告.pdf) —— 同内容 PDF 版
+- [车队通讯任务_交付报告.docx](docs/车队通讯任务_交付报告.docx) —— 同内容 Word 版
+- [build_report_docx.py](docs/build_report_docx.py) —— 由 Markdown 生成 docx/pdf 的脚本
