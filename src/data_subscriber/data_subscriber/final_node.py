@@ -4,7 +4,7 @@ from std_msgs.msg import Float32
 
 
 class FinalNode(Node):
-    """鏈€缁堣闃呰€咃細鎹曡幏 calc1_result 鍜?calc2_result 鐨勫疄鏃跺€?""
+    """最终订阅者：捕获 calc1_result 和 calc2_result 的实时值"""
 
     def __init__(self):
         super().__init__('final_node')
@@ -12,10 +12,10 @@ class FinalNode(Node):
         self.create_subscription(Float32, '/calc2_result', self.cb2, 10)
 
     def cb1(self, msg):
-        self.get_logger().info(f'[鎹曡幏] 璁＄畻鑺傜偣1缁撴灉 = {msg.data:.4f}')
+        self.get_logger().info(f'[捕获] 计算节点1结果 = {msg.data:.4f}')
 
     def cb2(self, msg):
-        self.get_logger().info(f'[鎹曡幏] 璁＄畻鑺傜偣2缁撴灉 = {msg.data:.4f}')
+        self.get_logger().info(f'[捕获] 计算节点2结果 = {msg.data:.4f}')
 
 
 def main(args=None):

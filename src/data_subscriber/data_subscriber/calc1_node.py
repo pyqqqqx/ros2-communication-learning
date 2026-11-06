@@ -5,7 +5,7 @@ from std_msgs.msg import Float32
 
 
 class Calc1Node(Node):
-    """璁＄畻鑺傜偣1锛氳闃?/node1 /node2 /node3锛岀畻 (a1+a2+a3)-(b1+b2+b3)+(c1+c2+c3)"""
+    """计算节点1：订阅 /node1 /node2 /node3，算 (a1+a2+a3)-(b1+b2+b3)+(c1+c2+c3)"""
 
     def __init__(self):
         super().__init__('calc1_node')
